@@ -1,51 +1,27 @@
-# min2phase C++
-- Rubik's Cube solver or scrambler.
-- [Algorithm](Algorithm.md)
-- [Benchmarks](Benchmarks.md)
+# LTCT Custom Scramble Generator
+
+This application generates scrambles with parity, no cycle breaks in corners and exactly one corner twist. The corner twist and the last target can be selected to create scrambles that use one specific LTCT.
 
 # Usage
 
-First, you need to initialize the algorithm using:
-```C++
-    min2phase::init();
-```
-After that, you can write the initialization into a file, so the next time the algorithm initialization will be faster. Using:
-```C++
-    min2phase::writeFile("name.m2pc");
-```
-Now, the next time you can load the coordinates from the file:
-```C++
-    min2phase::loadFile("name.m2pc");
-```
-If you try to load a file that does not exist, min2phase::init() will be executed automatically.
-
-After the initialization, you can execute the solver. This is an example of how it works.
-See [min2phase.h](include/min2phase/min2phase.h) for the arguments explanation of the solver.
-
-```C++
-#include <iostream>
-#include <min2phase/min2phase.h>
-#include <min2phase/tools.h>
-
-int main(int argc, char *argv[]){
-
-    min2phase::init();//precomputed coordinates
-
-    std::cout << min2phase::solve(min2phase::tools::randomCube(), 21, 1000000, 0, min2phase::APPEND_LENGTH | min2phase::USE_SEPARATOR, nullptr);
-    return 0;
-}
-```
-See [tools.h](include/min2phase/tools.h) for some useful function for the solver.
-You can also read the coordinates from a file, see [min2phase.h](include/min2phase/min2phase.h). Reading from a file the coordinates will increase the speed of the algorithm.
-
-
-# Compiling
+## Setup
 
 ```bash
-cmake CMakeLists.txt
+mkdir build
+cd build
+cmake ..
 make
-g++ -I include/ yourporgram.cpp -L. -lmin2phase -o yourporgram -Wl,-rpath,.
 ```
+
+## Generating Scrambles
+
+```bash
+./generate_scrambles <target> <twist> <number_of_scrambles (defaults to 10)>
+```
+
+`target` and `twist` use the speffz numbering convention starting with 0, e.g. UBL and UB (A) would be 0, BLD and BL (T) would be 19. The corner twist is defined by the position of the U/D sticker.
+
+
 
 # License
 

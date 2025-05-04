@@ -7,7 +7,7 @@
 class Tracing {
     public:
         // Traces the corners and sets the parity
-        static bool verify_ltct(Cube& cube, int last_target, int corner_twist);
+        static bool verify_ltct(Cube& cube, char target, char twist);
 };
 
 #endif

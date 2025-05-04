@@ -48,161 +48,162 @@ namespace min2phase { namespace tools {
         std::srand(seed);
     }
 
-    bool bufferOnLastTarget(CubieCube cube, int target, int twist) {
+    bool bufferOnLastTarget(CubieCube cube, char target, char twist) {
         std::string faces = CubieCube::toFaceCube(cube);
+        std::string clockwise = "EIQGKOS";
         char firstSticker;
         char secondSticker;
-        if (twist == 0) {
+        if (twist == 'C') {
             firstSticker = 'U';
             secondSticker = 'R';
-        } else if (twist % 2 == 0) {
+        } else if (clockwise.find(twist) != std::string::npos) {
             firstSticker = 'R';
             secondSticker = 'F';
         } else {
             firstSticker = 'F';
             secondSticker = 'U';
         }
-        if (target == 0) {
+        if (target == 'A') {
             if (faces[0] == firstSticker && faces[36] == secondSticker) {
                 return true;
             } else {
                 return false;
             }
         }
-        if (target == 1) {
+        if (target == 'B') {
             if (faces[2] == firstSticker && faces[45] == secondSticker) {
                 return true;
             } else {
                 return false;
             }
         }
-        if (target == 3) {
+        if (target == 'D') {
             if (faces[6] == firstSticker && faces[18] == secondSticker) {
                 return true;
             } else {
                 return false;
             }
         }
-        if (target == 4) {
+        if (target == 'E') {
             if (faces[36] == firstSticker && faces[47] == secondSticker) {
                 return true;
             } else {
                 return false;
             }
         }
-        if (target == 5) {
+        if (target == 'F') {
             if (faces[38] == firstSticker && faces[6] == secondSticker) {
                 return true;
             } else {
                 return false;
             }
         }
-        if (target == 6) {
+        if (target == 'G') {
             if (faces[44] == firstSticker && faces[24] == secondSticker) {
                 return true;
             } else {
                 return false;
             }
         }
-        if (target == 7) {
+        if (target == 'H') {
             if (faces[42] == firstSticker && faces[33] == secondSticker) {
                 return true;
             } else {
                 return false;
             }
         }
-        if (target == 8) {
+        if (target == 'I') {
             if (faces[18] == firstSticker && faces[38] == secondSticker) {
                 return true;
             } else {
                 return false;
             }
         }
-        if (target == 10) {
+        if (target == 'K') {
             if (faces[26] == firstSticker && faces[15] == secondSticker) {
                 return true;
             } else {
                 return false;
             }
         }
-        if (target == 11) {
+        if (target == 'L') {
             if (faces[24] == firstSticker && faces[27] == secondSticker) {
                 return true;
             } else {
                 return false;
             }
         }
-        if (target == 13) {
+        if (target == 'N') {
             if (faces[11] == firstSticker && faces[2] == secondSticker) {
                 return true;
             } else {
                 return false;
             }
         }
-        if (target == 14) {
+        if (target == 'O') {
             if (faces[17] == firstSticker && faces[51] == secondSticker) {
                 return true;
             } else {
                 return false;
             }
         }
-        if (target == 15) {
+        if (target == 'P') {
             if (faces[15] == firstSticker && faces[29] == secondSticker) {
                 return true;
             } else {
                 return false;
             }
         }
-        if (target == 16) {
+        if (target == 'Q') {
             if (faces[45] == firstSticker && faces[11] == secondSticker) {
                 return true;
             } else {
                 return false;
             }
         }
-        if (target == 17) {
+        if (target == 'R') {
             if (faces[47] == firstSticker && faces[0] == secondSticker) {
                 return true;
             } else {
                 return false;
             }
         }
-        if (target == 18) {
+        if (target == 'S') {
             if (faces[53] == firstSticker && faces[42] == secondSticker) {
                 return true;
             } else {
                 return false;
             }
         }
-        if (target == 19) {
+        if (target == 'T') {
             if (faces[51] == firstSticker && faces[35] == secondSticker) {
                 return true;
             } else {
                 return false;
             }
         }
-        if (target == 20) {
+        if (target == 'U') {
             if (faces[27] == firstSticker && faces[44] == secondSticker) {
                 return true;
             } else {
                 return false;
             }
         }
-        if (target == 21) {
+        if (target == 'V') {
             if (faces[29] == firstSticker && faces[26] == secondSticker) {
                 return true;
             } else {
                 return false;
             }
         }
-        if (target == 22) {
+        if (target == 'W') {
             if (faces[35] == firstSticker && faces[17] == secondSticker) {
                 return true;
             } else {
                 return false;
             }
         }
-        if (target == 23) {
+        if (target == 'X') {
             if (faces[33] == firstSticker && faces[53] == secondSticker) {
                 return true;
             } else {
@@ -217,7 +218,7 @@ namespace min2phase { namespace tools {
     int returnSingleTwist(CubieCube cube) {
         std::string faces = CubieCube::toFaceCube(cube);
         int numTwists = 0;
-        int singleTwist = 0;
+        char singleTwist = 'Z';
         if (faces[8] == 'U' && faces[9] == 'R') {
             return 0;
         } else if (faces[8] == 'R' && faces[9] == 'F') {
@@ -229,85 +230,85 @@ namespace min2phase { namespace tools {
             if (++numTwists > 1) {
                 return 0;
             }
-            singleTwist = 5;
+            singleTwist = 'F';
         }
         if (faces[6] == 'L' && faces[18] == 'U') {
             if (++numTwists > 1) {
                 return 0;
             }
-            singleTwist = 8;
+            singleTwist = 'I';
         }
         if (faces[0] == 'B' && faces[36] == 'U') {
             if (++numTwists > 1) {
                 return 0;
             }
-            singleTwist = 4;
+            singleTwist = 'E';
         }
         if (faces[0] == 'L' && faces[36] == 'B') {
             if (++numTwists > 1) {
                 return 0;
             }
-            singleTwist = 17;
+            singleTwist = 'R';
         }
         if (faces[2] == 'R' && faces[45] == 'U') {
             if (++numTwists > 1) {
                 return 0;
             }
-            singleTwist = 16;
+            singleTwist = 'Q';
         }
         if (faces[2] == 'B' && faces[45] == 'R') {
             if (++numTwists > 1) {
                 return 0;
             }
-            singleTwist = 13;
+            singleTwist = 'N';
         }
         if (faces[29] == 'R' && faces[26] == 'D') {
             if (++numTwists > 1) {
                 return 0;
             }
-            singleTwist = 10;
+            singleTwist = 'K';
         }
         if (faces[29] == 'F' && faces[26] == 'R') {
             if (++numTwists > 1) {
                 return 0;
             }
-            singleTwist = 15;
+            singleTwist = 'P';
         }
         if (faces[27] == 'F' && faces[44] == 'D') {
             if (++numTwists > 1) {
                 return 0;
             }
-            singleTwist = 6;
+            singleTwist = 'G';
         }
         if (faces[27] == 'L' && faces[44] == 'F') {
             if (++numTwists > 1) {
                 return 0;
             }
-            singleTwist = 11;
+            singleTwist = 'L';
         }
         if (faces[33] == 'L' && faces[53] == 'D') {
             if (++numTwists > 1) {
                 return 0;
             }
-            singleTwist = 18;
+            singleTwist = 'S';
         }
         if (faces[33] == 'B' && faces[53] == 'L') {
             if (++numTwists > 1) {
                 return 0;
             }
-            singleTwist = 7;
+            singleTwist = 'H';
         }
         if (faces[35] == 'B' && faces[17] == 'D') {
             if (++numTwists > 1) {
                 return 0;
             }
-            singleTwist = 14;
+            singleTwist = 'O';
         }
         if (faces[35] == 'R' && faces[17] == 'B') {
             if (++numTwists > 1) {
                 return 0;
             }
-            singleTwist = 19;
+            singleTwist = 'T';
         }
 
 
@@ -315,7 +316,7 @@ namespace min2phase { namespace tools {
     }
 
     //get random cube
-    std::string randomCube(int target, int twist) {
+    std::string randomCube(char target, char twist) {
         if (!coords::isInit())
             return "";
 
@@ -327,8 +328,8 @@ namespace min2phase { namespace tools {
         int32_t edgePerm;
         bool been = false;
         int count = 0;
-        if (twist == 0) {
-            while (!bufferOnLastTarget(cube, target, 0)) {
+        if (twist == 'C') {
+            while (!bufferOnLastTarget(cube, target, 'C')) {
                 parity = 0;
                 while (parity == 0) {
                     cornerPerm = std::rand() % (info::N_PERM + 1);

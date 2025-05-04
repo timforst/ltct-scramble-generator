@@ -20,12 +20,12 @@ int main(int argc, char *argv[]){
     int twist;
     int iterations;
     if (argc == 2) {
-        target = std::stoi(argv[1]);
-        twist = 0;
+        target = argv[1][0];
+        twist = 'C';
         iterations = 10;
     } else if (argc == 3) {
-        target = std::stoi(argv[1]);
-        twist = std::stoi(argv[2]);
+        target = argv[1][0];
+        twist = argv[2][0];
         iterations = 10;
     } else if (argc == 4) {
         iterations = std::stoi(argv[3]);

@@ -34,7 +34,7 @@ namespace min2phase { namespace tools {
      *
      * @return : the string that contains the random cube.
      */
-    std::string randomCube(int target = 0, int twist = 0);
+    std::string randomCube(char target = 'C', char twist = 'C');
 
     /**
      * Generate a cube from a scramble.

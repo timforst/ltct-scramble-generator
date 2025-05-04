@@ -2,8 +2,11 @@
 #include <iostream>
 
 // Traces the corners from UFR and sets the parity accordingly
-bool Tracing::verify_ltct(Cube& cube, int final_target, int corner_twist) {
+bool Tracing::verify_ltct(Cube& cube, char target, char twist) {
     std::array<unsigned short, 54> state = cube.get_state();
+    int final_target = target - 'A';
+    int corner_twist = twist - 'A';
+    /* std::cout << corner_twist << std::endl; */
     static constexpr size_t BUFFER = 2; // UFR
     // Equivalence relation: 0=4=17, 1=16=13, 2=9=12, 3=5=8, 6=11=20, 7=18=23, 10=15=21, 14=19=22
     static constexpr std::array<unsigned short, 24> target_to_piece_lookup = {
@@ -22,7 +25,7 @@ bool Tracing::verify_ltct(Cube& cube, int final_target, int corner_twist) {
 
     unsigned short number_of_twists = 0;
     unsigned short solved = 0;
-    if (corner_twist == 0) {
+    if (corner_twist == 2) {
         for (unsigned short corner : corners) {
             if (target_to_piece_lookup[state[corner]] == target_to_piece_lookup[corner]) {
                 unsigned short twist_direction = twist_lookup[state[corner]];

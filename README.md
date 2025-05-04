@@ -16,10 +16,10 @@ make
 ## Generating Scrambles
 
 ```bash
-./generate_scrambles <target> <twist> <number_of_scrambles (defaults to 10)>
+./generate_scrambles <target> <twist (defaults to no twist, so just parity)> <number_of_scrambles (defaults to 10)>
 ```
 
-`target` and `twist` use the speffz numbering convention starting with 0, e.g. UBL and UB (A) would be 0, BLD and BL (T) would be 19. The corner twist is defined by the position of the U/D sticker.
+`target` and `twist` use the speffz numbering convention starting with 0, e.g. UBL and UB (A) would be 0, BRD and BR (T) would be 19. The corner twist is defined by the position of the U/D sticker.
 
 
 

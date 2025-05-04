@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/benchmark.dir/examples/benchmark.cpp.o -o benchmark  libmin2phase.a -lpthread 

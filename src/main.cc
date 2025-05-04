@@ -16,11 +16,21 @@
 #include "../include/cube.h"
 
 int main(int argc, char *argv[]){
-    int iterations = 10;
-    if (argc == 4) {
+    int target;
+    int twist;
+    int iterations;
+    if (argc == 2) {
+        target = std::stoi(argv[1]);
+        twist = 0;
+        iterations = 10;
+    } else if (argc == 3) {
+        target = std::stoi(argv[1]);
+        twist = std::stoi(argv[2]);
+        iterations = 10;
+    } else if (argc == 4) {
         iterations = std::stoi(argv[3]);
-    } else if (argc != 3 && argc != 4) {
-        std::cout << "Usage: " << argv[0] << " <parity_target> <corner_twist> <number_of_scrambles (optional)>" << std::endl;
+    } else {
+        std::cout << "Usage: " << argv[0] << " <parity_target> <corner_twist (leave blank for just parity)> <number_of_scrambles (optional)>" << std::endl;
         return 1;
     }
     uint8_t movesUsed;
@@ -32,11 +42,11 @@ int main(int argc, char *argv[]){
     int counter = 0;
     while (successes < iterations) {
         counter++;
-        std::string str = min2phase::solve(min2phase::tools::randomCube(std::stoi(argv[1]), std::stoi(argv[2])), 28, 100000, 0, min2phase::INVERSE_SOLUTION, &movesUsed);
+        std::string str = min2phase::solve(min2phase::tools::randomCube(target, twist), 28, 100000, 0, min2phase::INVERSE_SOLUTION, &movesUsed);
         int double_moves = std::count(str.begin(), str.end(), '2');
         int moves = str.size() / 3;
         Cube cube{str};
-        if (cube.check_ltct(std::stoi(argv[1]), std::stoi(argv[2]))) {
+        if (cube.check_ltct(target, twist)) {
             std::cout << str << std::endl;
             successes +=1;
         }

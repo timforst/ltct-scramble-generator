@@ -19,20 +19,31 @@ bool Tracing::verify_ltct(Cube& cube, int final_target, int corner_twist) {
     static constexpr std::array<unsigned short, 7> corners = {
         0, 1, 3, 20, 21, 22, 23
     };
-    if (state[corner_twist] != target_to_UD_lookup[corner_twist]) {
-        return false;
-    } 
+
     unsigned short number_of_twists = 0;
     unsigned short solved = 0;
-    for (unsigned short corner : corners) {
-        if (target_to_piece_lookup[state[corner]] == target_to_piece_lookup[corner]) {
-            unsigned short twist_direction = twist_lookup[state[corner]];
-            if (twist_direction == 0) {
-                ++solved;
-            } else {
-                ++solved;
-                if (++number_of_twists > 1) {
+    if (corner_twist == 0) {
+        for (unsigned short corner : corners) {
+            if (target_to_piece_lookup[state[corner]] == target_to_piece_lookup[corner]) {
+                unsigned short twist_direction = twist_lookup[state[corner]];
+                if (twist_direction == 0) {
+                    ++solved;
+                } else {
                     return false;
+                }
+            }
+        }
+    } else {
+        for (unsigned short corner : corners) {
+            if (target_to_piece_lookup[state[corner]] == target_to_piece_lookup[corner]) {
+                unsigned short twist_direction = twist_lookup[state[corner]];
+                if (twist_direction == 0) {
+                    ++solved;
+                } else {
+                    ++solved;
+                    if (++number_of_twists > 1) {
+                        return false;
+                    }
                 }
             }
         }

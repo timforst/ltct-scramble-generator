@@ -52,7 +52,10 @@ namespace min2phase { namespace tools {
         std::string faces = CubieCube::toFaceCube(cube);
         char firstSticker;
         char secondSticker;
-        if (twist % 2 == 0) {
+        if (twist == 0) {
+            firstSticker = 'U';
+            secondSticker = 'R';
+        } else if (twist % 2 == 0) {
             firstSticker = 'R';
             secondSticker = 'F';
         } else {
@@ -324,18 +327,29 @@ namespace min2phase { namespace tools {
         int32_t edgePerm;
         bool been = false;
         int count = 0;
-        while (!bufferOnLastTarget(cube, target, twist) || returnSingleTwist(cube) != twist) {
-            parity = 0;
-            while (parity == 0) {
-                cornerPerm = std::rand() % (info::N_PERM + 1);
-                cornerOri = std::rand() % (info::N_TWIST + 1);
-                parity = CubieCube::getNParity(cornerPerm, info::NUMBER_CORNER);
-                count += 1;
+        if (twist == 0) {
+            while (!bufferOnLastTarget(cube, target, 0)) {
+                parity = 0;
+                while (parity == 0) {
+                    cornerPerm = std::rand() % (info::N_PERM + 1);
+                    cornerOri = std::rand() % (info::N_TWIST + 1);
+                    parity = CubieCube::getNParity(cornerPerm, info::NUMBER_CORNER);
+                    count += 1;
+                }
+                cube.setCoords(cornerPerm, cornerOri, 0, 0);
             }
-            cube.setCoords(cornerPerm, cornerOri, 0, 0);
-            /* if (++count > 72000) { */
-            /*     break; */
-            /* } */
+        } else {
+
+            while (!bufferOnLastTarget(cube, target, twist) || returnSingleTwist(cube) != twist) {
+                parity = 0;
+                while (parity == 0) {
+                    cornerPerm = std::rand() % (info::N_PERM + 1);
+                    cornerOri = std::rand() % (info::N_TWIST + 1);
+                    parity = CubieCube::getNParity(cornerPerm, info::NUMBER_CORNER);
+                    count += 1;
+                }
+                cube.setCoords(cornerPerm, cornerOri, 0, 0);
+            }
         }
         edgeOri = std::rand() % (info::N_FLIP + 1);
         do {

@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/tests.dir/examples/tests.cpp.o -o tests  libmin2phase.a -lpthread 

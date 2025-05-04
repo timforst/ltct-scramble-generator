@@ -1,4 +1,0 @@
-/home/timo/fun/cubing/custom_scrambles/build/CMakeFiles/min2phase.dir
-/home/timo/fun/cubing/custom_scrambles/build/CMakeFiles/generate_scrambles.dir
-/home/timo/fun/cubing/custom_scrambles/build/CMakeFiles/edit_cache.dir
-/home/timo/fun/cubing/custom_scrambles/build/CMakeFiles/rebuild_cache.dir

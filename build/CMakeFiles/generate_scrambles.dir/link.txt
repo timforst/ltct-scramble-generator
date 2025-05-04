@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/generate_scrambles.dir/src/main.cc.o CMakeFiles/generate_scrambles.dir/src/cube.cc.o CMakeFiles/generate_scrambles.dir/src/turns.cc.o CMakeFiles/generate_scrambles.dir/src/tracing.cc.o -o generate_scrambles  libmin2phase.a -lpthread 

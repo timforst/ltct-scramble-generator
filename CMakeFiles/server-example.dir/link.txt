@@ -1,0 +1,1 @@
+/usr/bin/c++ "CMakeFiles/server-example.dir/examples/server-example.cpp.o" -o server-example  libmin2phase.a -lpthread 

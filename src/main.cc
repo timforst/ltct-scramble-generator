@@ -16,8 +16,8 @@
 #include "../include/cube.h"
 
 int main(int argc, char *argv[]){
-    int target;
-    int twist;
+    char target;
+    char twist;
     int iterations;
     if (argc == 2) {
         target = argv[1][0];
@@ -28,6 +28,8 @@ int main(int argc, char *argv[]){
         twist = argv[2][0];
         iterations = 10;
     } else if (argc == 4) {
+        target = argv[1][0];
+        twist = argv[2][0];
         iterations = std::stoi(argv[3]);
     } else {
         std::cout << "Usage: " << argv[0] << " <parity_target> <corner_twist (leave blank for just parity)> <number_of_scrambles (optional)>" << std::endl;
